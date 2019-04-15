@@ -16,4 +16,7 @@ compose: protobuf
 	find cmd -maxdepth 1 -type d -mindepth 1 -exec sh -c 'cd $$1 && GOOS=linux go build' -- {} \;
 	docker-compose up --build
 
+test:
+	go test verbio/nlu
+
 		

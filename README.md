@@ -40,7 +40,9 @@
 # How to run
 *******
 
- Running make docker should install dependencies, build and start docker-compose. The apigw listens in port 8000 so make sure you don't have anything running there. Once the containers have been build you can run them again just by runnind `docker-compose up`. An example request can be executed with curl by doing `curl http://localhost:8000/dialog -X POST -d '{"text": "nlu: hello"}' --header "Authorization: Bearer aaa"`. Each service publishes itself in consul, so at any time you may connect to http://localhost:8500 and see in realtime what services are connected and how many. The webpage runs in port 8080. So once everything has been built and is up-and-running load http://localhost:8080 in your browser to run the webpage.
+  - Running make docker should install dependencies, build and start docker-compose. The apigw listens in port 8000 so make sure you don't have anything running there. Once the containers have been build you can run them again just by runnind `docker-compose up`. An example request can be executed with curl by doing `curl http://localhost:8000/dialog -X POST -d '{"text": "nlu: hello"}' --header "Authorization: Bearer aaa"`. Each service publishes itself in consul, so at any time you may connect to http://localhost:8500 and see in realtime what services are connected and how many. The webpage runs in port 8080. So once everything has been built and is up-and-running load http://localhost:8080 in your browser to run the webpage.
+
+  - There is an example mock test that starts an nlu service and makes an example request. To run it simply do `make test`
 
 # Follow the code
 *******
