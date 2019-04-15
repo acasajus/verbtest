@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package knowledge;
+
+service Knowledge {
+    rpc Hello(HelloRequest) returns (HelloResponse) {}
+}
+
+message HelloRequest {
+}
+
+message HelloResponse {
+    string text = 1;
+}

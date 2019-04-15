@@ -1,0 +1,8 @@
+vendor
+cmd/apigw/apigw
+cmd/auth/auth
+cmd/dialogmgr/dialogmgr
+cmd/direct/direct
+cmd/knowledge/knowledge
+cmd/nlu/nlu
+cmd/taskmgr/taskmgr

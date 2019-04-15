@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package nlu;
+
+service NLU {
+    rpc Process(ProcessRequest) returns (ProcessResponse) {}
+}
+
+message ProcessRequest {
+    string text = 1;
+}
+
+message ProcessResponse {
+    string data = 1;
+}

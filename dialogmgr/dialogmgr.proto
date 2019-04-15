@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package dialogmgr;
+
+
+service DialogMgr {
+    rpc Message(MessageRequest) returns (MessageResponse) {}
+}
+
+message MessageRequest {
+    string text = 1;
+}
+
+message MessageResponse {
+    string data = 1;
+}

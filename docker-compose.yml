@@ -1,0 +1,52 @@
+consul:
+  command: -server -bootstrap -rejoin 
+  image: progrium/consul:latest
+  ports:
+    - "8300:8300"
+    - "8400:8400"
+    - "8500:8500"
+    - "8600:53/udp"
+apigw:
+  build: ./cmd/apigw
+  command: -consul.addr=consul:8500 -http.addr=:8000
+  links:
+    - consul
+    - auth
+    - dialogmgr
+    - nlu
+  ports:
+    - "8000:8000"
+auth:
+  build: ./cmd/auth
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
+dialogmgr:
+  build: ./cmd/dialogmgr
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
+    - nlu
+    - direct
+    - knowledge
+    - taskmgr
+direct:
+  build: ./cmd/direct
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
+nlu:
+  build: ./cmd/nlu
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
+knowledge:
+  build: ./cmd/knowledge
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
+taskmgr:
+  build: ./cmd/taskmgr
+  command: --registry=consul --registry_address=consul:8500
+  links:
+    - consul
