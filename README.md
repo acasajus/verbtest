@@ -17,16 +17,19 @@
     - If services are deployed via kubernetes the service discovery part can be replaced by kubernetes dns
   - gRPC as the transport protocol
     - Service endpoints are defined in a separate file from the code so any change in the interface requires a chande in this file. This makes trivial seeing if there is a change in the interface and prevents errors
-    - It is a binary protocol leveraging HTTP/2 muxing so although it is more difficult to debug by hand, it allows bidirectional data flow, has less overheat and is faster serializind and deserializing than JSON.
+    - It is a binary protocol leveraging HTTP/2 muxing so although it is more difficult to debug by hand, it allows bidirectional data flow, has less overheat and is faster serializing and deserializing than JSON.
 
 # Architecture 
 ******
 
   - The API gw is a stateless service that forwards the requests to the appropriate backend service. In order to make this stateless it shoult only connect to consul to discover where the services are and to the AuthNZ service that validates the requests come from the valid users and what their privileges are. If everything is OK then it forwards the request to the appropiate service.
-  - The frontend connects with the gw via a websocket to easy the bidirectional dataflow required in a chat application. Once HTTP/2 trailers are standardised websockets can be replaced directly with gRPC connections.
-  - In the mockup developed the transport between clients and the apigw can be done with websockets althouth official standards doesn't allow to send any header (like Authorization: header). So a workaround would be needed.
+  - The frontend connects with the gw via a REST HTTP or a websocket if there is a bidirectional dataflow required. Once HTTP/2 trailers are standardised websockets can be replaced directly with gRPC connections.
+  - The apigw is stateles to allow easy load balancing. All state is pushed to internal services to distribute the load. It acts as a broker to dispatch request to their services once the authzn has
+  been validated (by the auth service). 
+  - The auth service is easily scalable since although it has state (user sessions) it is easily cacheable in a store like a sharded redis if needed.
+  - In case more scalability is needed services can be load-balanced in shards based in userids or something else unique per request. Dadabase sharding is not as easy and has to be studied since it is dependent on the data structure. 
 
-  - There is a helper webpage included made in VueJS. It sends the requests to the apigw and prints the results. 
+  - There is a helper webpage included made in VueJS acting as a mock client. It sends the requests to the apigw and prints the results. 
 
 # How to run
 *******
