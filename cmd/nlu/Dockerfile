@@ -1,4 +1,4 @@
-FROM alpine:3.2
-ADD nlu /
+FROM scratch
+ADD nlu /nlu
 WORKDIR /
 ENTRYPOINT [ "/nlu" ]

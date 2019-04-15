@@ -6,12 +6,14 @@ consul:
     - "8400:8400"
     - "8500:8500"
     - "8600:53/udp"
+
 web:
   build: ./callcenter-web
   links:
     - apigw
   ports:
     - "8080:8080"
+
 apigw:
   build: ./cmd/apigw
   command: -consul.addr=consul:8500 -http.addr=:8000

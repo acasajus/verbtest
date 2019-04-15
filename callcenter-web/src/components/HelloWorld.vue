@@ -10,7 +10,7 @@
     <div class='req'>
       <button @click="doDM">Send text to dialog manager</button>
       <input type="text" v-model="text_dm"> Forward to
-      <span v-for="svc in ['nlu', 'task', 'direct', 'knowledge']">
+      <span v-bind:item="svc" v-bind:index="index" v-bind:key="svc" v-for="(svc,index) in ['nlu', 'task', 'direct', 'knowledge']">
         <input type="radio" :id="svc" :value="svc" v-model="svc_dm">
         <label :for="svc">{{svc}}</label>
       </span>

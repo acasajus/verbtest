@@ -1,4 +1,4 @@
-FROM alpine:3.2
-ADD taskmgr /
+FROM scratch
+ADD taskmgr /taskmgr
 WORKDIR /
 ENTRYPOINT [ "/taskmgr" ]

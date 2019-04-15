@@ -1,4 +1,4 @@
-FROM alpine:3.2
-ADD auth /
+FROM scratch
+ADD auth /auth
 WORKDIR /
 ENTRYPOINT [ "/auth" ]

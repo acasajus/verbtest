@@ -1,4 +1,4 @@
-FROM alpine:3.2
-ADD dialogmgr /
+FROM scratch
+ADD dialogmgr /dialogmgr
 WORKDIR /
 ENTRYPOINT [ "/dialogmgr" ]

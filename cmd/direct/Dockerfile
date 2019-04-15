@@ -1,4 +1,4 @@
-FROM alpine:3.2
-ADD direct /
+FROM scratch
+ADD direct /direct
 WORKDIR /
 ENTRYPOINT [ "/direct" ]
