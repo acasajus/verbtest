@@ -35,6 +35,8 @@ func (d DialogMgrSvc) Message(ctx context.Context, req *MessageRequest, resp *Me
 	}
 	user := md["user"]
 	log.Printf("Dialog manager request by user %s with text", user, req.Text)
+	//Example routing from a service to a different one. If the text starts with nlu:, task:... the request will be sent to that service
+	// and the response sent back to the client
 	switch {
 	case strings.Index(req.Text, "nlu:") == 0:
 		svc := nlu.NewNLUService("nlu", d.getBaseClient())

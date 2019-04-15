@@ -12,6 +12,7 @@ func (api *API) getDMClient() dialogmgr.DialogMgrService {
 }
 
 func (api *API) rootDM(w http.ResponseWriter, r *http.Request) error {
+	//Decode request from json and forward to dialog manager
 	nreq := &dialogmgr.MessageRequest{}
 	if err := json.NewDecoder(r.Body).Decode(nreq); err != nil {
 		log.Println("Cannot decode request")

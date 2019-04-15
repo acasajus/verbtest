@@ -22,6 +22,7 @@ func (api *API) doAuthRegisterCall(w http.ResponseWriter, r *http.Request) error
 }
 
 func (api *API) doAuthValidateCall(w http.ResponseWriter, r *http.Request) (*auth.ValidateResponse, error) {
+	//Send validation request with the token extracted from the Authorization: Bearer XXXX
 	authHdr := strings.Split(r.Header.Get("Authorization"), " ")
 	if len(authHdr) < 2 || authHdr[0] != "Bearer" {
 		log.Printf("Invalid auth header is %v", authHdr)
