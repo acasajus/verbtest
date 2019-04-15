@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"verbio/apigw"
+
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -17,5 +19,5 @@ func main() {
 	api := apigw.NewAPI(*consulAddr)
 
 	log.Printf("Listening at %s", *httpAddr)
-	http.ListenAndServe(*httpAddr, api)
+	http.ListenAndServe(*httpAddr, cors.AllowAll().Handler(api))
 }

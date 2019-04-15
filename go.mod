@@ -12,6 +12,8 @@ require (
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/micro/examples v0.1.0
 	github.com/micro/go-micro v1.1.0
+	github.com/micro/protoc-gen-micro v0.7.2 // indirect
+	github.com/rs/cors v1.6.0
 	golang.org/x/arch v0.0.0-20190312162104-788fe5ffcd8c // indirect
 	google.golang.org/grpc v1.19.1
 )
